@@ -10,6 +10,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -41,6 +42,10 @@ public class Order {
     @Enumerated(EnumType.STRING)
     private OrderStatus status;
 
+    @OneToOne
+    @JoinColumn(name = "delivery_id")
+    private Delivery delivery;
+
     public Long getId() {
         return id;
     }
@@ -71,5 +76,13 @@ public class Order {
 
     public void setStatus(OrderStatus status) {
         this.status = status;
+    }
+
+    public Delivery getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(Delivery delivery) {
+        this.delivery = delivery;
     }
 }
